@@ -1,0 +1,122 @@
+groups:
+  - name: nydart-metrics-alerts
+    rules:
+      # High Error Rate Alert
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status_code=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for the last 5 minutes"
+
+      # Slow Response Time Alert
+      - alert: SlowResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow response time detected"
+          description: "95th percentile response time is {{ $value }}s"
+
+      # High CPU Usage Alert
+      - alert: HighCPUUsage
+        expr: system_cpu_usage_percentage > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is {{ $value }}%"
+
+      # High Memory Usage Alert
+      - alert: HighMemoryUsage
+        expr: system_memory_usage_percentage > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage detected"
+          description: "Memory usage is {{ $value }}%"
+
+      # High Disk Usage Alert
+      - alert: HighDiskUsage
+        expr: system_disk_usage_percentage > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High disk usage detected"
+          description: "Disk usage is {{ $value }}%"
+
+      # Low Cache Hit Rate Alert
+      - alert: LowCacheHitRate
+        expr: cache_hit_rate_percentage < 50
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low cache hit rate detected"
+          description: "Cache hit rate is {{ $value }}%"
+
+      # Database Connection Pool Exhaustion
+      - alert: DatabaseConnectionPoolExhaustion
+        expr: database_connection_pool{state="active"} / database_connection_pool{state="total"} > 0.9
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Database connection pool nearly exhausted"
+          description: "{{ $value | humanizePercentage }} of database connections are active"
+
+      # Service Down Alert
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service is down"
+          description: "Service {{ $labels.job }} has been down for more than 1 minute"
+
+      # AI Request Failure Rate Alert
+      - alert: HighAIRequestFailureRate
+        expr: rate(ai_requests_total{status="failed"}[5m]) / rate(ai_requests_total[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High AI request failure rate"
+          description: "AI request failure rate is {{ $value | humanizePercentage }}"
+
+      # High AI Request Cost Alert
+      - alert: HighAIRequestCost
+        expr: rate(ai_request_cost_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High AI request cost detected"
+          description: "AI request cost is {{ $value }} per second"
+
+      # Low User Engagement Alert
+      - alert: LowUserEngagement
+        expr: rate(user_engagement_events_total[5m]) < 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low user engagement detected"
+          description: "User engagement rate is {{ $value }} events per second"
+
+      # Sales Transaction Failure Alert
+      - alert: SalesTransactionFailure
+        expr: rate(sales_transactions_total{status="failed"}[5m]) > 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Sales transaction failures detected"
+          description: "{{ $value }} failed sales transactions per second" 

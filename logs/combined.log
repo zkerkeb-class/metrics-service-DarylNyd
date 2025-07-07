@@ -1,0 +1,10 @@
+{"level":"info","message":"MongoDB Connected: ac-slyllrd-shard-00-00.itukwfr.mongodb.net","service":"metrics-service","timestamp":"2025-07-07 03:09:46"}
+{"level":"info","message":"MongoDB Connected: ac-slyllrd-shard-00-00.itukwfr.mongodb.net","service":"metrics-service","timestamp":"2025-07-07 03:09:53"}
+{"level":"info","message":"MongoDB Connected: ac-slyllrd-shard-00-00.itukwfr.mongodb.net","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"Redis client connected","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"Redis client ready","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"Metrics service running on port 5005","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"Environment: development","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"Prometheus metrics available at: http://localhost:5005/metrics","service":"metrics-service","timestamp":"2025-07-07 03:12:55"}
+{"level":"info","message":"::1 - - [07/Jul/2025:01:15:21 +0000] \"GET /metrics HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"","service":"metrics-service","timestamp":"2025-07-07 03:15:21"}
+{"level":"info","message":"::1 - - [07/Jul/2025:01:15:21 +0000] \"GET /favicon.ico HTTP/1.1\" 404 49 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"","service":"metrics-service","timestamp":"2025-07-07 03:15:21"}
