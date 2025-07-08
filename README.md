@@ -1,6 +1,7 @@
 # Metrics Service - NydArt Advisor
 
 A comprehensive metrics and analytics service for tracking AI requests, user engagement, sales analytics, and performance monitoring using Node.js, Express, MongoDB, Redis, and Prometheus.
+by Ndenga Nemeck Yvan Daryl
 
 ## Features
 
