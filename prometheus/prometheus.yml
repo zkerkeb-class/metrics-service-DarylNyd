@@ -20,7 +20,7 @@ scrape_configs:
   # Metrics Service
   - job_name: 'metrics-service'
     static_configs:
-      - targets: ['metrics-service:5005']
+      - targets: ['host.docker.internal:5005']
     metrics_path: '/metrics'
     scrape_interval: 10s
 
@@ -29,30 +29,37 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  # Auth Service (if available)
+  # Auth Service
   - job_name: 'auth-service'
     static_configs:
       - targets: ['host.docker.internal:5002']
     metrics_path: '/metrics'
     scrape_interval: 30s
 
-  # Database Service (if available)
+  # Database Service
   - job_name: 'database-service'
     static_configs:
       - targets: ['host.docker.internal:5001']
     metrics_path: '/metrics'
     scrape_interval: 30s
 
-  # Payment Service (if available)
+  # Payment Service
   - job_name: 'payment-service'
     static_configs:
       - targets: ['host.docker.internal:3004']
     metrics_path: '/metrics'
     scrape_interval: 30s
 
-  # Frontend (if available)
+  # Frontend
   - job_name: 'frontend'
     static_configs:
-      - targets: ['host.docker.internal:3000']
+      - targets: [host.docker.internal:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Notification Service
+  - job_name: 'notification-service'
+    static_configs:
+      - targets: ['host.docker.internal:4003']
     metrics_path: '/metrics'
     scrape_interval: 30s 
