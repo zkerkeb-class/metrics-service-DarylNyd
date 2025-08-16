@@ -31,7 +31,7 @@ promClient.collectDefaultMetrics({ register });
 // Security middleware
 app.use(helmet());
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }));
 
@@ -61,7 +61,7 @@ app.get('/health', (req, res) => {
         status: 'OK',
         service: 'Metrics Service',
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV || 'development',
+        environment: process.env.NODE_ENV,
         version: require('../package.json').version
     });
 });
@@ -127,7 +127,7 @@ const startServer = async () => {
         
         app.listen(PORT, () => {
             logger.info(`Metrics service running on port ${PORT}`);
-            logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+            logger.info(`Environment: ${process.env.NODE_ENV}`);
             logger.info(`Prometheus metrics available at: http://localhost:${PORT}/metrics`);
         });
     } catch (error) {
